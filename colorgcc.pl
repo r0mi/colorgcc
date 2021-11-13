@@ -84,7 +84,7 @@
 #       https://github.com/fesselk/colorgcc/commit/5f458441c225a4c5e69ea7b9097e31aabc4cc816
 #
 # 1.4.0 Search compiler within $PATH -> added function findPath()
-#       More highlighting lines: "instanciated from", "note:" and linker error 
+#       More highlighting lines: "instanciated from", "note:" and linker error
 #
 # 1.3.2 Better handling of command line arguments to compiler.
 #
@@ -127,7 +127,7 @@ sub initDefaults
   $nocolor{"dumb"} = "true";
 
   $colors{"srcColor"}             = color("bold white");
-  $colors{"identColor"}           = color("bold green"); 
+  $colors{"identColor"}           = color("bold green");
   $colors{"introColor"}           = color("bold green");
 
   $colors{"introFileNameColor"} = color("blue");
@@ -229,6 +229,7 @@ sub srcscan
 
   # Single line quoting.
   $line =~ s/\`(.*?)\'/\`$srcon$1$srcoff\'/g;
+  $line =~ s/\'(.*?)\'/\'$srcon$1$srcoff\'/g;
 
   # This substitute replaces ‘foo’ with ‘AfooB’ where A is the escape
   # sequence that turns on the the desired identifier color, and B is the
@@ -307,8 +308,8 @@ sub findPath
 my $progName = fileparse $0;
 
 # See if the user asked for a specific compiler.
-my $compiler = 
-$compilerPaths{$progName} || findPath($progName) || 
+my $compiler =
+$compilerPaths{$progName} || findPath($progName) ||
 $compilerPaths{"gcc"}     || findPath("gcc");
 
 # Get the terminal type.
@@ -360,7 +361,7 @@ while(<GCCOUT>)
       print($colors{"errorFileNameColor"}, "$field1:", color("reset"));
       print($colors{"errorNumberColor"},   "$field2:", color("reset"));
       srcscan($field3, $colors{"errorMessageColor"});
-    } 
+    }
     else
     {
       # Note
