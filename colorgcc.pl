@@ -355,7 +355,7 @@ while(<GCCOUT>)
       print($colors{"warningNumberColor"},   "$field2:", color("reset"));
       srcscan($field3, $colors{"warningMessageColor"});
     }
-    elsif ($field3 =~ m/\s+error:.*/)
+    elsif ($field3 =~ m/\s+error:.*/ || $field3 =~m/\s+syntax error.*/)
     {
       # Error
       print($colors{"errorFileNameColor"}, "$field1:", color("reset"));
